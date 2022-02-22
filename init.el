@@ -144,6 +144,7 @@
        (org              ; organize your plain life in plain text
         +pretty
         +dragndrop       ; drag & drop files/images into org buffers
+        +org-download
         )
        ;;php               ; perl's insecure younger brother
        plantuml          ; diagrams for confusing people more

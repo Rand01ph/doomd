@@ -56,8 +56,22 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(setq evil-escape-key-sequence "kj")
+
+
 (after! leetcode
   (setq leetcode-prefer-language "python3"
         leetcode-prefer-sql "mysql"
         leetcode-save-solutions t
         leetcode-directory "~/leetcode"))
+
+
+(use-package! ox-confluence
+  :defer 3
+  :ensure nil
+  :after org)
+
+;; org-download
+(after! org-download
+  (setq org-download-method 'directory
+        org-download-image-dir "./images/"))
