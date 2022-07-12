@@ -24,3 +24,9 @@
 
 (defun current-date ()
   (format-time-string "%Y-%m-%d %A" (current-time)))
+
+;; rime
+(use-package! rime
+  :custom
+  (default-input-method "rime")
+  (rime-show-candidate 'posframe))

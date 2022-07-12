@@ -24,11 +24,13 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 24 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "Sarasa Mono Slab SC" :size 24))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-monokai-pro)
+(setq doom-theme 'doom-vibrant)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -56,8 +58,46 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(setq evil-escape-key-sequence "kj")
+
+
 (after! leetcode
   (setq leetcode-prefer-language "python3"
         leetcode-prefer-sql "mysql"
         leetcode-save-solutions t
         leetcode-directory "~/leetcode"))
+
+
+(use-package! ox-confluence
+  :defer 3
+  :ensure nil
+  :after org)
+
+;; org-download
+(after! org-download
+  (setq org-download-method 'directory
+        org-download-image-dir "./images/"))
+
+(use-package! wakatime-mode
+  :config (global-wakatime-mode))
+
+;;; Org-gtd
+(use-package! org-gtd
+  :after org
+  :config
+  (org-edna-mode)
+  (setq org-gtd-directory "~/org/gtd")
+  (setq org-gtd-default-file-name "actionable")
+  (setq org-edna-use-inheritance t)
+  (map!
+   :leader
+   (:prefix-map ("d" . "org-gtd")
+    :desc "Capture"        "c"  #'org-gtd-capture
+    :desc "Engage"         "e"  #'org-gtd-engage
+    :desc "Process inbox"  "p"  #'org-gtd-process-inbox
+    :desc "Show all next"  "n"  #'org-gtd-show-all-next
+    :desc "Stuck projects" "s"  #'org-gtd-show-stuck-projects))
+
+  (map!
+   :map org-gtd-process-map
+   :desc "Choose"         "C-c C-c" #'org-gtd-choose))

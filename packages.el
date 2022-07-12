@@ -51,3 +51,6 @@
 
 (package! python-black)
 (package! leetcode)
+(package! wakatime-mode)
+(package! rime)
+(package! org-gtd :recipe (:type git :host github :repo "Trevoke/org-gtd.el"))
