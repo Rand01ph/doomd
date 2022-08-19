@@ -19,7 +19,7 @@
        ;;japanese
 
        :completion
-       company           ; the ultimate code completion backend
+       (company +childframe)           ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ivy               ; a search engine for love and life
@@ -41,11 +41,11 @@
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
        ;;pretty-code       ; ligatures or substitute text with pretty symbols
        ;;tabs              ; a tab bar for Emacs
-       ;;treemacs          ; a project drawer, like neotree but cooler
+       treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
-       ;;window-select     ; visually switch windows
+       (window-select +numbers)     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
        ;;zen               ; distraction-free coding or writing
 
@@ -53,7 +53,7 @@
        (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
-       ;;(format +onsave)  ; automated prettiness
+       (format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
        ;;multiple-cursors  ; editing in many places at once
@@ -94,7 +94,7 @@
        lsp
        ;;macos             ; MacOS-specific commands
        magit             ; a git porcelain for Emacs
-       ;;make              ; run make tasks from Emacs
+       make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        ;;pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
@@ -112,7 +112,7 @@
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
-       ;;data              ; config/data formats
+       data              ; config/data formats
        ;;(dart +flutter)   ; paint ui and not much else
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
@@ -151,7 +151,9 @@
        plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python            ; beautiful is better than ugly
-        +lsp)
+        +pyenv
+        +lsp
+        +pyright)
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6

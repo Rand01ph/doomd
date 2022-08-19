@@ -53,4 +53,7 @@
 (package! leetcode)
 (package! wakatime-mode)
 (package! rime)
-(package! org-gtd :recipe (:type git :host github :repo "Trevoke/org-gtd.el"))
+(package! org-gtd :recipe (:type git :host github :repo "Trevoke/org-Gtd.el"))
+(package! nyan-mode :recipe (:host github :repo "TeMPOraL/nyan-mode"))
+;;; 一次 backspace 吃掉所有空白符
+(package! hungry-delete :recipe (:host github :repo "nflath/hungry-delete"))

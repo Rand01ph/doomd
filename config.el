@@ -12,6 +12,26 @@
 (setq user-full-name "Rand01ph"
       user-mail-address "tanyawei1991@gmail.com")
 
+(setq-default delete-by-moving-to-trash t
+              x-stretch-cursor t)
+
+(setq! undo-limit 104857600
+       auto-save-default t
+       gc-cons-threshold 1073741824
+       read-process-output-max 1048576)
+
+(global-subword-mode 1)
+
+(define-key! global-map "C-s" #'+default/search-buffer)
+
+(add-to-list 'default-frame-alist '(height . 50))
+(add-to-list 'default-frame-alist '(width . 100))
+
+(add-hook 'prog-mode-hook (lambda () (setq show-trailing-whitespace 1)))
+
+(setq-default custom-file (expand-file-name ".custom.el" doom-user-dir))
+(when (file-exists-p custom-file) (load custom-file))
+
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
@@ -24,8 +44,8 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 24 :weight 'regular)
-      doom-variable-pitch-font (font-spec :family "Sarasa Mono Slab SC" :size 24))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size (if (> (display-pixel-width) 1920) 24 12) :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "Sarasa Mono Slab SC" :size (if (> (display-pixel-width) 1920) 24 12)))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -59,6 +79,27 @@
 ;; they are implemented.
 
 (setq evil-escape-key-sequence "kj")
+
+;; 切换窗口
+(map! :map evil-window-map
+      "SPC" #'rotate-layout
+      ;; 方向
+      "<left>"   #'evil-window-left
+      "<down>"   #'evil-window-down
+      "<up>"     #'evil-window-up
+      "<right>"  #'evil-window-right
+      ;; 交换窗口
+      "C-<left>"   #'+evil/window-move-left
+      "C-<down>"   #'+evil/window-move-down
+      "C-<up>"     #'+evil/window-move-up
+      "C-<right>"  #'+evil/window-move-right
+      )
+
+(after! doom-modeline
+  (custom-set-variables '(doom-modeline-buffer-file-name-style 'relative-to-project)
+                        '(doom-modeline-major-mode-icon t)
+                        '(doom-modeline-modal-icon nil))
+  (nyan-mode t))
 
 
 (after! leetcode
@@ -101,3 +142,11 @@
   (map!
    :map org-gtd-process-map
    :desc "Choose"         "C-c C-c" #'org-gtd-choose))
+
+(use-package! hungry-delete
+  :config
+  (setq-default hungry-delete-chars-to-skip " \t\v")
+  (setq hungry-delete-except-modes '(help-mode minibuffer-mode minibuffer-inactive-mode))
+  (add-hook! 'after-init-hook #'global-hungry-delete-mode))
+
+(custom-set-variables '(wakatime-api-key "96f909e0-00a6-4e3c-b3fe-d7010bf8b5de"))
