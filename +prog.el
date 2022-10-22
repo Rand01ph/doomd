@@ -37,12 +37,12 @@
         flycheck-python-pylint-executable "pylint"
         flycheck-python-flake8-executable "flake8"))
 
-(use-package! lsp-pyright
-  :config
-  (setq lsp-clients-python-command "pyright")
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (lsp))))
+;; (use-package! lsp-pyright
+;;   :config
+;;   (setq lsp-clients-python-command "pyright")
+;;   :hook (python-mode . (lambda ()
+;;                          (require 'lsp-pyright)
+;;                          (lsp))))
 
 (use-package! python-black
   :after python
